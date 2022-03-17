@@ -11,14 +11,14 @@ app = Flask(__name__,template_folder='templates')
 app.secret_key = 'super-secret-key'
 
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uvcewhbbqtkmml:e38eadfffca0476eed909f2a21aecdef0f76165f43b8ee4a5d9235d769ede864@ec2-34-224-226-38.compute-1.amazonaws.com:5432/dum2phlj6sumi'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -192,7 +192,7 @@ def adminlogin():
 @app.route("/logout", methods = ['GET','POST'])
 def logout():
     session.pop('email')
-    return redirect(url_for('index.html')) 
+    return redirect(url_for('Home')) 
 
 
 @app.route("/dashboard")
