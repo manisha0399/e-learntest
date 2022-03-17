@@ -5,7 +5,7 @@ from flask_mail import Mail
 import os
 from flask import Flask,  request
 import re
-
+from flask_migrate import Migrate 
 
 app = Flask(__name__,template_folder='templates')
 app.secret_key = 'super-secret-key'
@@ -23,6 +23,7 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+migrate = Migrate(app,db)
 
 class Register(db.Model):
     __tablename__ = 'register'
