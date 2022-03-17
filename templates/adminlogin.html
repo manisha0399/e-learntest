@@ -1,0 +1,82 @@
+
+<section>
+  <div class="container">
+     <main>
+               {% with messages=get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category,message in messages %}
+                        {% if category== 'success' %}
+                          <div class="alert alert-success mb-3" role="alert">{{message}}</div>
+                        {% endif %}
+                        {% if category== 'error' %}
+                           <div class="alert alert-danger mb-3" role="alert">{{message}}</div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+         </main>
+    <form action="/adminlogin" method='post'>
+      <h2>Please Login Here</h2>
+      <!-- <div class="input-box">
+        <p>User Name</p>
+        <input type="text" name="uname" required="required">
+      </div> -->
+      <div class="input-box">
+        <p>email</p>
+        <input type="email" name="email" required="required">
+      </div>
+      <div class="input-box">
+        <p>password</p>
+        <input type="password" name="password" required="required">
+      </div><br>
+      <div class="im">
+        <input type="submit" value="Login">
+      </div>
+    </form>
+  </div>
+</section>
+
+<style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@800&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    width: 100%;
+    background: url(assets1/static/images/hero_1.jpg);
+}
+.container{
+  width: 800px;
+  margin:auto;
+  justify-content: center;
+  background:rgb(0,128,0);
+  padding: 50px 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.25)
+}
+form{
+  width: 750px;
+  margin: auto;
+  align-items:center;
+  padding: 5px
+}
+input{
+  border:none; 
+  width: 100%;
+  min-height:10px;
+  padding: 5px
+}
+.im input:hover{
+background: grey;
+color: black;
+}
+</style>
