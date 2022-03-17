@@ -73,7 +73,7 @@ def register():
             db.session.commit()
             
             return render_template('success.html')
-        return render_template('register.html')
+    return render_template('register.html')
 
 @app.route("/login",methods=['GET','POST'])
 def login():
