@@ -57,22 +57,32 @@ def Album():
 
 @app.route("/register", methods=['GET','POST'])
 def register():
-    if request.method == 'POST':
+    if(request.method=='POST'):
         name = request.form.get('name')
         uname = request.form.get('uname')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        cpassword = request.form.get('cpassword')
-        
-        if name == '' or uname == '' or email == '' or password == '' or cpassword == '':
-            return render_template('register.html', message='Please enter required fields')
-        if db.session.query(Register).filter(Register.email == email).count() == 0:
-            data = Register(name, uname, email, password, cpassword)
-            db.session.add(data)
-            db.session.commit()
-           
-            return render_template('success.html')
-        return render_template('register.html', message='You have already submitted feedback')
+        email= request.form.get('email')
+        password= request.form.get('password')
+        cpassword= request.form.get('cpassword')
+
+        user=register.query.filter_by(email=email).first()
+        if user:
+            flash('Account already exist!Please login','success')
+            return redirect(url_for('register'))
+        if not(len(name)) >3:
+            flash('length of name is invalid','error')
+            return redirect(url_for('register')) 
+        if (len(mobile))<10:
+            flash('invalid mobile number','error')
+            return redirect(url_for('register')) 
+        if (len(password))<8:
+            flash('length of password should be greater than 7','error')
+            return redirect(url_for('register'))
+        else:
+             flash('You have registtered succesfully','success')
+        entry = register(name=name,uname=uname,email=email,password=password,cpassword=cpassword)
+        db.session.add(entry)
+        db.session.commit()
+    return render_template('register.html')
 
 @app.route("/login",methods=['GET','POST'])
 def login():
@@ -200,4 +210,5 @@ def dashboard():
     return render_template("dashboard.html")
 
 if __name__ == '__main__':
+    app.debug = True
     app.run()
