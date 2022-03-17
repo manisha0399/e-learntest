@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <!-- Main css -->
     <link rel="stylesheet" href="{{url_for('static',filename= 'css1/style.css')}}">
 </head>
+
 <body>
 
     <div class="main">
@@ -22,9 +24,12 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign In</h2>
+                        {% if message %}
+                        <p class="message">{{ message | safe }}</p>
+                        {% endif %}
 
                         <form method="POST" class="register-form" id="register-form" action="/register">
-                            <div class="msg">{{ msg }}</div>
+
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name" required="" />
@@ -33,7 +38,7 @@
                                 <label for="uname"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="uname" id="uname" placeholder="User Name" required="" />
                             </div>
-                           
+
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email" required="" />
@@ -47,7 +52,7 @@
                                 <input type="password" name="cpassword" id="cpassword" placeholder="Repeat your password" required="" />
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
                             </div>
                         </form>
                     </div>
@@ -59,5 +64,6 @@
                 </div>
             </div>
         </section>
-    </!DOCTYPE html>
-    </html>>
+        </!DOCTYPE html>
+
+</html>>
