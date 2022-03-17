@@ -58,11 +58,11 @@ def Album():
 @app.route("/register", methods=['GET','POST'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        uname = request.form['uname']
-        email = request.form['email']
-        password = request.form['password']
-        cpassword = request.form['cpassword']
+        name = request.form.get('name')
+        uname = request.form.get('uname')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        cpassword = request.form.get('cpassword')
         
         if name == '' or uname == '' or email == '' or password == '' or cpassword == '':
             return render_template('register.html', message='Please enter required fields')
