@@ -71,9 +71,7 @@ def register():
         if not(len(name)) >3:
             flash('length of name is invalid','error')
             return redirect(url_for('register')) 
-        if (len(mobile))<10:
-            flash('invalid mobile number','error')
-            return redirect(url_for('register')) 
+        
         if (len(password))<8:
             flash('length of password should be greater than 7','error')
             return redirect(url_for('register'))
@@ -201,8 +199,7 @@ def adminlogin():
 
 @app.route("/logout", methods = ['GET','POST'])
 def logout():
-    session.pop('email')
-    return redirect(url_for('Home')) 
+    return render_template('index.html')
 
 
 @app.route("/dashboard")
