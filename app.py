@@ -8,7 +8,8 @@ import re
 from flask_migrate import Migrate 
 
 app = Flask(__name__,template_folder='templates')
-app.secret_key = 'super-secret-key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uvcewhbbqtkmml:e38eadfffca0476eed909f2a21aecdef0f76165f43b8ee4a5d9235d769ede864@ec2-34-224-226-38.compute-1.amazonaws.com:5432/dum2phlj6sumi'
+
 
 
 ENV = 'prod'
