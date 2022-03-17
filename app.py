@@ -67,8 +67,8 @@ def register():
 
         if name == '' or uname == '' or email == '' or password == '' or cpassword == '':
             return render_template('register.html', message='Please enter required fields')
-        if db.session.query(Register).filter(Register.email == email).count() == 0:
-            data = Register(name, uname, email, password,cpassword)
+        if db.session.query(register).filter(register.email == email).count() == 0:
+            data = register(name, uname, email, password,cpassword)
             db.session.add(data)
             db.session.commit()
             
