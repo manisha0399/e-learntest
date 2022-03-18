@@ -15,33 +15,9 @@ app = Flask(__name__,template_folder='templates')
 
 ENV = 'prod'
 
-if ENV == 'dev':
-    app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
-else:
-    app.debug = False
-   
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-migrate = Migrate(app,db)
-
-class Register(db.Model):
-    __tablename__ = 'register'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200))
-    uname = db.Column(db.String(200))
-    email = db.Column(db.String(200),unique=True)
-    password =db.Column(db.String(10))
-    cpassword =db.Column(db.String(10))
-
-    def __init__(self, name, uname, email, password, cpassword):
-        self.name = name
-        self.uname = uname
-        self.email = email
-        self.password = password
-        self.cpassword = cpassword
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 @app.route("/")
