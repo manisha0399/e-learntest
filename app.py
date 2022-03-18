@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request,session,redirect,flash,url_for,send_file
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import *
 from flask_mail import Mail
 import os
 from flask import Flask,  request
